@@ -100,6 +100,7 @@ UniCon-Database is a repo containing all info related to UniCon's database
 - `sem`: INTEGER NOT NULL
 - `roll_no`: INTEGER NOT NULL
 
+
 ```sql
 -- Create Subject Table
 CREATE TABLE subject (
