@@ -129,7 +129,8 @@ CREATE TABLE department (
 CREATE TABLE batch (
     id SERIAL PRIMARY KEY,
     batch_name VARCHAR(255) NOT NULL,
-    dep_id INTEGER REFERENCES department(id) NOT NULL
+    dep_id INTEGER REFERENCES department(id) NOT NULL,
+    UNIQUE(batch_name, dep_id)
 );
 
 -- Create Time Slot Table
