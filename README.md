@@ -40,7 +40,7 @@ UniCon-Database is a repo containing all info related to UniCon's database
 ### Room Table
 
 - `id`: SERIAL PRIMARY KEY
-- `room_no`: INTEGER NOT NULL
+- `room_no`: VARCHAR(10) NOT NULL
 - `room_type`: room_type NOT NULL
 - UNIQUE(room_no, room_type)
 
@@ -147,7 +147,7 @@ CREATE TYPE room_type AS ENUM('Classroom', 'Physics-Lab', 'Computer-Lab');
 
 CREATE TABLE room (
     id SERIAL PRIMARY KEY,
-    room_no INTEGER NOT NULL,
+    room_no VARCHAR(10) NOT NULL,
     room_type room_type NOT NULL,
     UNIQUE(room_no, room_type)
 );
@@ -162,10 +162,24 @@ CREATE TABLE timetable (
     bat_id INTEGER REFERENCES batch(id) NOT NULL,
     fac_id INTEGER REFERENCES faculty(id) NOT NULL,
     room_id INTEGER REFERENCES room(id) NOT NULL,
-    UNIQUE(time_id, bat_id, fac_id, room_id)
+    UNIQUE(time_id, day, bat_id, fac_id, room_id)
+    UNIQUE (time_id, day, room_id)
+    UNIQUE (time_id, day, bat_id)
+    UNIQUE (time_id, day, fac_id)
 );
 
--- Repeat the process for the remaining tables
+CREATE TABLE proxy_timetable (
+    id SERIAL PRIMARY KEY,
+    time_id INTEGER REFERENCES time_slot(id) NOT NULL,
+    day day_of_week NOT NULL,
+    bat_id INTEGER REFERENCES batch(id) NOT NULL,
+    fac_id INTEGER REFERENCES faculty(id) NOT NULL,
+    room_id INTEGER REFERENCES room(id) NOT NULL,
+    UNIQUE(time_id, day, bat_id, fac_id, room_id)
+    UNIQUE (time_id, day, room_id)
+    UNIQUE (time_id, day, bat_id)
+    UNIQUE (time_id, day, fac_id)
+);
 
 -- Create Degree Table
 CREATE TABLE degree (
