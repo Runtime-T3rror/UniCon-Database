@@ -162,9 +162,9 @@ CREATE TABLE timetable (
     bat_id INTEGER REFERENCES batch(id) NOT NULL,
     fac_id INTEGER REFERENCES faculty(id) NOT NULL,
     room_id INTEGER REFERENCES room(id) NOT NULL,
-    UNIQUE(time_id, day, bat_id, fac_id, room_id)
-    UNIQUE (time_id, day, room_id)
-    UNIQUE (time_id, day, bat_id)
+    UNIQUE(time_id, day, bat_id, fac_id, room_id),
+    UNIQUE (time_id, day, room_id),
+    UNIQUE (time_id, day, bat_id),
     UNIQUE (time_id, day, fac_id)
 );
 
@@ -175,9 +175,9 @@ CREATE TABLE proxy_timetable (
     bat_id INTEGER REFERENCES batch(id) NOT NULL,
     fac_id INTEGER REFERENCES faculty(id) NOT NULL,
     room_id INTEGER REFERENCES room(id) NOT NULL,
-    UNIQUE(time_id, day, bat_id, fac_id, room_id)
-    UNIQUE (time_id, day, room_id)
-    UNIQUE (time_id, day, bat_id)
+    UNIQUE(time_id, day, bat_id, fac_id, room_id),
+    UNIQUE (time_id, day, room_id),
+    UNIQUE (time_id, day, bat_id),
     UNIQUE (time_id, day, fac_id)
 );
 
